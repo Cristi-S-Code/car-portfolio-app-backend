@@ -1,5 +1,6 @@
 package com.car.portfolio.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.car.portfolio.dao.CarRepository;
 import com.car.portfolio.entities.Car;
@@ -25,22 +27,12 @@ public class CarService {
 	@Autowired
 	private CarRepository carRepository;
 	
-	// This method is for populating the DB with an pre-maked list
-//	private void populateCarList() {
-//		try {
-//			if (carRepository.count() == 0) {
-//				Resource resource = new ClassPathResource("cars.csv");
-//				CsvSchema schema = CsvSchema.emptySchema().withHeader();
-//				CsvMapper mapper = new CsvMapper();
-//				MappingIterator<Car> iterator = mapper.readerFor(Car.class).with(schema)
-//						.readValues(resource.getInputStream());
-//				carRepository.saveAll(iterator.readAll());
-//			} 
-//		} catch (IOException e) {
-//				logger.error("An error occurred while populating cars.", e);
-//			}
-//		}
+//	@Autowired
+//	private CarDataRepository carDataRepository;
 	
+//	private final String FOLDER_PATH = "D:\\Aplicatii-Web\\aplicatie veziv.ro\\MyImages";
+	
+	// car methods
 	public Car addCarToDb(Car car) {
 		return carRepository.save(car);
 	}
@@ -56,6 +48,28 @@ public class CarService {
 	public void deleteCarById(Long id) {
 		carRepository.deleteById(id);
 	}
+	
+	//carData methods
+	
+//	public String uploadImageToFileSystem (MultipartFile file) throws IOException {
+//		String imagePath = FOLDER_PATH+file.getOriginalFilename();
+//		CarData carData = carDataRepository.save(CarData.builder()
+//				.imagePath(imagePath).build());
+//		
+//		file.transferTo(new File(imagePath));
+//		
+//		if (carData != null) {
+//			return "file uploaded succesfully : " + imagePath;
+//		}
+//		
+//		return null;
+//	}
+	
+//	public byte[] downloadImageFromFileSystem(String fileName) {
+//		
+//	}
+	
+	
 	
 	
 	}
